@@ -7,7 +7,7 @@ dirpath = path.dirname(path.abspath(__file__))
 ###################################
 # config
 target_file_name = "broadcast_text_dump.sql"
-output_file_name = "broadcast_text_rollback.sql"
+output_file_name = "broadcast_text_update.sql"
 
 table_name = "broadcast_text"
 table_index_column_name = "entry"
@@ -35,6 +35,7 @@ rFileLines = rFile.readlines()
 
 for line in rFileLines:
     if line.startswith("INSERT"):
+        line = line.strip()
         line = re.sub(r"^INSERT.*VALUES ", "", line)
         line = re.sub(r";$", "", line)
         line = re.sub(r"^\(", "", line)
@@ -44,16 +45,14 @@ for line in rFileLines:
             item = re.sub(r",\d+", "", item)
             item = re.sub(r",[^ ]", ",''", item)
             parts = re.split(r",'", item)
-            content = (
-                "UPDATE `{}` WHERE `{}`={} SET `{}`={}, `{}`={};\n".format(
-                    table_name,
-                    table_index_column_name,
-                    parts[0],
-                    table_column_1,
-                    parts[1],
-                    table_column_2,
-                    parts[2],
-                )
+            content = "UPDATE `{}` SET `{}`={}, `{}`={} WHERE `{}`={};\n".format(
+                table_name,
+                table_column_1,
+                parts[1],
+                table_column_2,
+                parts[2],
+                table_index_column_name,
+                parts[0],
             )
             wFile.writelines(content)
 
