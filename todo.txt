@@ -125,8 +125,8 @@
 [ ] │   └── py3MangosToCN_linux.py
 [ ] ├── Vmangos-chinese
 [ ] │   ├── README.md
-[i] │   ├── broadcast_text.sql
-[ ] │   └── broadcast_text_tw.sql
+[D] │   ├── broadcast_text.sql
+[D] │   └── broadcast_text_tw.sql
 [ ] ├── wow_db_chinese
 [ ] │   ├── DB-tbc
 [ ] │   │   ├── creature_ai_texts.sql
@@ -147,7 +147,7 @@
 [ ]     ├── README.md
 [ ]     ├── zhCN
 [ ]     │   ├── achievement_reward_locale.sql
-[ ]     │   ├── broadcast_text_locale.sql
+[D]     │   ├── broadcast_text_locale.sql
 [ ]     │   ├── creature_template_locale.sql
 [ ]     │   ├── creature_text_locale.sql
 [ ]     │   ├── gameobject_template_locale.sql
